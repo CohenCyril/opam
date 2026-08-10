@@ -1,0 +1,43 @@
+opam-version: "2.0"
+maintainer: "palmskog@gmail.com"
+
+homepage: "https://github.com/coq-community/reglang"
+dev-repo: "git+https://github.com/coq-community/reglang.git"
+bug-reports: "https://github.com/coq-community/reglang/issues"
+license: "CECILL-B"
+
+synopsis: "Representations of regular languages (i.e., regexps, various types of automata, and WS1S) with equivalence proofs, in Coq and MathComp"
+description: """
+This library provides definitions and verified translations between
+different representations of regular languages: various forms of
+automata (deterministic, nondeterministic, one-way, two-way),
+regular expressions, and the logic WS1S. It also contains various
+decidability results and closure properties of regular languages."""
+
+build: [make "-j%{jobs}%" "-C" "theories"]
+install: [make "-C" "theories" "install"]
+depends: [
+  "coq" {>= "8.6" & < "8.10~"}
+  "coq-mathcomp-ssreflect" {>= "1.6" & < "1.8~"}
+]
+
+tags: [
+  "category:Computer Science/Formal Languages Theory and Automata"
+  "keyword:regular languages"
+  "keyword:regular expressions"
+  "keyword:finite automata"
+  "keyword:two-way automata"
+  "keyword:monadic second-order logic"
+  "logpath:RegLang"
+  "date:2018-09-18"
+]
+authors: [
+  "Christian Doczkal"
+  "Jan-Oliver Kaiser"
+  "Gert Smolka"
+]
+
+url {
+  src: "https://github.com/coq-community/reglang/archive/v1.0.tar.gz"
+  checksum: "sha512=f245b4d735725c5256018af293d3e313c48f35178a89d8b8c90c2f4b4bd6bad4038bcfe0d25e10547a0f8d010e7450d223f30457d27b7c6d31a0db7ad7a68477"
+}

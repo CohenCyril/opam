@@ -6,18 +6,15 @@ dev-repo: "git+https://github.com/lukaszcz/coqhammer.git"
 bug-reports: "https://github.com/lukaszcz/coqhammer/issues"
 license: "LGPL 2.1"
 
-build: [ make "-j%{jobs}%" ]
+build: [ make "-j%{jobs}%" {ocaml:version >= "4.06"} ]
 install: [ make "install" ]
-remove: [
-  ["sh" "-c" "rm -rf '%{lib}%/coq/user-contrib/Hammer'"]
-  ["sh" "-c" "rm -f '%{bin}%/predict' '%{bin}%/htimeout'"]
-]
 depends: [
   "ocaml"
+  "conf-g++" {build}
   "coq" {>= "8.7" & < "8.8~"}
 ]
 tags: [ "keyword:automation"
-	"category:Misc/Coq Extensions"
+	"category:Miscellaneous/Coq Extensions"
 	"date:2018-04-09" ]
 
 authors: [
@@ -27,6 +24,6 @@ authors: [
 ]
 synopsis: "Automation for Dependent Type Theory"
 url {
-  src: "https://github.com/lukaszcz/coqhammer/archive/v1.0.8-coq8.7.tar.gz"
+  src: "https://github.com/lukaszcz/coqhammer/archive/refs/tags/v1.0.8-coq8.7.tar.gz"
   checksum: "md5=01267d1ade74dd431ba15cee21c87217"
 }

@@ -5,14 +5,20 @@ license: "LGPL 2"
 build: [
   ["coq_makefile" "-f" "Make" "-o" "Makefile"]
   [make "-j%{jobs}%"]
-  [make "install"]
 ]
+install: [make "install"]
 remove: ["rm" "-R" "%{lib}%/coq/user-contrib/RSA"]
 depends: [
   "ocaml"
   "coq" {= "dev"}
 ]
-tags: [ "keyword:rsa" "keyword:chinese remainder" "keyword:fermat's little theorem" "category:Computer Science/Decision Procedures and Certified Algorithms/Correctness proofs of algorithms" "date:1999" ]
+tags: [
+  "keyword:rsa"
+  "keyword:chinese remainder"
+  "keyword:Fermat's little theorem"
+  "category:Computer Science/Decision Procedures and Certified Algorithms/Correctness proofs of algorithms"
+  "date:1999"
+]
 authors: [ "Laurent Théry <>" "Jose C. Almeida <>" ]
 synopsis: "Correctness of RSA algorithm."
 description: """

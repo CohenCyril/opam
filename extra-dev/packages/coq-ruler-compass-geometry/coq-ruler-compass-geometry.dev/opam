@@ -5,14 +5,22 @@ license: "GNU Lesser Public License"
 build: [
   ["coq_makefile" "-f" "Make" "-o" "Makefile"]
   [make "-j%{jobs}%"]
-  [make "install"]
 ]
+install: [make "install"]
 remove: ["rm" "-R" "%{lib}%/coq/user-contrib/RulerCompassGeometry"]
 depends: [
   "ocaml"
   "coq" {= "dev"}
 ]
-tags: [ "keyword:geometry" "keyword:plane geometry" "keyword:ruler and compass geometry" "keyword:euclidean geometry" "keyword:hilbert's axioms" "category:Mathematics/Geometry/General" "date:2007-11" ]
+tags: [
+  "keyword:geometry"
+  "keyword:plane geometry"
+  "keyword:ruler and compass geometry"
+  "keyword:euclidean geometry"
+  "keyword:Hilbert's axioms"
+  "category:Mathematics/Geometry/General"
+  "date:2007-11"
+]
 authors: [ "Jean Duprat <Jean.Duprat@ens-lyon.fr>" ]
 synopsis: "Ruler and compass geometry axiomatization."
 description: """

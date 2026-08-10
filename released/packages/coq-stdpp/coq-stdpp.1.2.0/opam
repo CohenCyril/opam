@@ -9,7 +9,7 @@ dev-repo: "git+https://gitlab.mpi-sws.org/iris/stdpp.git"
 build: [make "-j%{jobs}%"]
 install: [make "install"]
 depends: [
-  "coq" {(>= "8.7" & < "8.10~") | (= "dev")}
+  "coq" {(>= "8.7" & < "8.10~") }
 ]
 synopsis: "This project contains an extended \"Standard Library\" for Coq called coq-std++"
 description: """
@@ -34,6 +34,6 @@ The key features of this library are as follows:
 
 url {
   src:
-    "https://gitlab.mpi-sws.org/iris/stdpp/repository/coq-stdpp-1.2.0/archive.tar.gz"
+    "https://gitlab.mpi-sws.org/iris/stdpp/-/archive/coq-stdpp-1.2.0.tar.gz"
   checksum: "md5=5aee0ec3ff9bb8bbdbf5a5d54d0d7670"
 }

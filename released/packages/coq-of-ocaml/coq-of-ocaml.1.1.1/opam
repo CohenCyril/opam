@@ -15,16 +15,17 @@ depends: [
   "conf-ruby" {build}
   "coq" {>= "8.4.5" & < "8.6"}
   "ocaml" {>= "4.02.0" & < "4.03.0"}
+  "ocamlbuild" {build}
   "smart-print"
-  "yojson"
+  "yojson" {< "2.0.0"}
 ]
 tags: [
   "date:2019-05-09"
   "keyword:compilation"
-  "keyword:ocaml"
+  "keyword:OCaml"
 ]
 synopsis: "Compile OCaml to Coq"
-extra-files: ["coq-of-ocaml.install" "md5=aaa1f52ec40bedefd2674f46a44cd578"]
+extra-files: ["coq-of-ocaml.install" "sha512=55fb085980e7b09981d927fdd4c123e5e473de5888761e12e14ec9d1810eaad2ef599245e3ceaef22b0369c51f16533b0893ffdc7c1b54b4b91dd232bd4ba4db"]
 url {
   src: "https://github.com/clarus/coq-of-ocaml/archive/1.1.1.tar.gz"
   checksum: "md5=6148587be3cee4ec577e9909fabd45ce"

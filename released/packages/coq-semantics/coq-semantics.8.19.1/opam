@@ -1,0 +1,52 @@
+# This file was generated from `meta.yml`, please do not edit manually.
+# Follow the instructions on https://github.com/coq-community/templates to regenerate.
+
+opam-version: "2.0"
+maintainer: "yves.bertot@inria.fr"
+
+homepage: "https://github.com/coq-community/semantics"
+dev-repo: "git+https://github.com/coq-community/semantics.git"
+bug-reports: "https://github.com/coq-community/semantics/issues"
+license: "MIT"
+
+synopsis: "A survey of semantics styles, from natural semantics through structural operational, axiomatic, and denotational semantics, to abstract interpretation"
+description: """
+This is a survey of programming language semantics styles
+for a miniature example of a programming language, with their encoding
+in Coq, the proofs of equivalence of different styles, and the proof
+of soundess of tools obtained from axiomatic semantics or abstract
+interpretation.  The tools can be run inside Coq, thus making them
+available for proof by reflection, and the code can also be extracted
+and connected to a yacc-based parser, thanks to the use of a functor
+parameterized by a module type of strings.  A hand-written parser is
+also provided in Coq, but there are no proofs associated.
+"""
+
+build: [make "-j%{jobs}%"]
+install: [make "install"]
+depends: [
+  "coq" {>= "8.19" & < "8.21~"}
+  "zarith" 
+  "ocaml"
+ "ocamlbuild" {build}
+]
+
+tags: [
+  "category:Computer Science/Semantics and Compilation/Semantics"
+  "keyword:natural semantics"
+  "keyword:denotational semantics"
+  "keyword:axiomatic semantics"
+  "keyword:Hoare logic"
+  "keyword:Dijkstra weakest pre-condition calculus"
+  "keyword:abstract interpretation"
+  "keyword:intervals"
+  "logpath:Semantics"
+]
+authors: [
+  "Yves Bertot"
+]
+
+url {
+  src: "https://github.com/ybertot/semantics/releases/download/v8.19.1/v8.19.1.tgz"
+  checksum: "sha512=8f5a9d0170c42cc57623927ad14d658c8f9989013559e43f9c729267ca37a012accee104c815e3b4f3a5724a793722a941a67d0c97d950a2217b417268a2b85c"
+}

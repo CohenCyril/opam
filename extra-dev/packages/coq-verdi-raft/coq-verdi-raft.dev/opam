@@ -5,21 +5,18 @@ homepage: "https://github.com/uwplse/verdi-raft"
 dev-repo: "git+https://github.com/uwplse/verdi-raft.git"
 bug-reports: "https://github.com/uwplse/verdi-raft/issues"
 license: "BSD-2-Clause"
+
 synopsis: "Verified implementation of the Raft distributed consensus protocol in Coq"
 description: """
 Raft is a distributed consensus algorithm that is designed to be easy to understand
 and is equivalent to Paxos in fault tolerance and performance. Verdi Raft is a
 verified implementation of Raft in Coq, constructed using the Verdi framework.
-"""
+Included is a verified fault-tolerant key-value store using Raft."""
 
-build: [
-  [ "./configure" ]
-  [ make "-j%{jobs}%" ]
-]
-install: [ make "install" ]
+build: [make "-j%{jobs}%"]
+install: [make "install"]
 depends: [
-  "ocaml"
-  "coq" {(>= "8.7" & < "8.10~") | (= "dev")}
+  "coq" {>= "8.14"}
   "coq-verdi" {= "dev"}
   "coq-struct-tact" {= "dev"}
   "coq-cheerios" {= "dev"}
@@ -29,18 +26,20 @@ tags: [
   "category:Computer Science/Concurrent Systems and Protocols/Theory of concurrent systems"
   "keyword:program verification"
   "keyword:distributed algorithms"
+  "keyword:fault tolerance"
+  "keyword:key-value store"
   "keyword:raft"
   "logpath:VerdiRaft"
 ]
 authors: [
-  "James R. Wilcox"
-  "Doug Woos"
+  "Justin Adsuara"
+  "Steve Anton"
+  "Ryan Doenges"
+  "Karl Palmskog"
   "Pavel Panchekha"
   "Zachary Tatlock"
-  "Steve Anton"
-  "Karl Palmskog"
-  "Ryan Doenges"
-  "Justin Adsuara"
+  "James R. Wilcox"
+  "Doug Woos"
 ]
 
 url {

@@ -2,14 +2,19 @@ opam-version: "2.0"
 maintainer: "Hugo.Herbelin@inria.fr"
 homepage: "https://github.com/coq-contribs/pts"
 license: "Unknown"
-build: [make "-j%{jobs}%"]
+build: [make "-j1"]
 install: [make "install"]
 remove: ["rm" "-R" "%{lib}%/coq/user-contrib/PTS"]
 depends: [
   "ocaml"
   "coq" {>= "8.6" & < "8.7~"}
 ]
-tags: [ "keyword: calculus of constructions" "keyword: coq" "keyword: PTS" "keyword: pure type systems" "keyword: metatheory" "category: Computer Science/Lambda Calculi" "date: 2007-03" ]
+tags: [
+  "keyword: pure type systems"
+  "keyword: metatheory"
+  "category: Computer Science/Lambda Calculi"
+  "date: 2007-03"
+]
 authors: [ "Bruno Barras" ]
 bug-reports: "https://github.com/coq-contribs/pts/issues"
 dev-repo: "git+https://github.com/coq-contribs/pts.git"

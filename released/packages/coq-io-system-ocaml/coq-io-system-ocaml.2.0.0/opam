@@ -12,9 +12,13 @@ install: [
   [make "install"]
 ]
 depends: [
-  "lwt"
+  "lwt" {< "5"}
   "ocaml" {>= "4.00.0" & < "4.06.0"}
-  "ocamlfind"
+  "ocamlbuild" {build}
+  "ocamlfind" {build}
+]
+conflicts: [
+  "ocaml-secondary-compiler"
 ]
 tags: [
   "date:2015-03-03"

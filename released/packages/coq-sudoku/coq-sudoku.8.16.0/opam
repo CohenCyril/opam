@@ -1,0 +1,35 @@
+opam-version: "2.0"
+maintainer: "palmskog@gmail.com"
+
+homepage: "https://github.com/coq-community/sudoku"
+dev-repo: "git+https://github.com/coq-community/sudoku.git"
+bug-reports: "https://github.com/coq-community/sudoku/issues"
+license: "LGPL-2.1-or-later"
+
+synopsis: "Sudoku solver certified in Coq"
+description: """
+A formalisation of Sudoku in Coq. It implements a naive
+Davis-Putnam procedure to solve Sudokus."""
+
+build: [make "-j%{jobs}%"]
+install: [make "install"]
+depends: [
+  "coq" {>= "8.12" & < "8.20"}
+]
+
+tags: [
+  "category:Miscellaneous/Logical Puzzles and Entertainment"
+  "keyword:puzzles"
+  "keyword:Davis-Putnam"
+  "keyword:sudoku"
+  "logpath:Sudoku"
+  "date:2022-10-19"
+]
+authors: [
+  "Laurent Théry"
+]
+
+url {
+  src: "https://github.com/coq-community/sudoku/archive/refs/tags/v8.16.0.tar.gz"
+  checksum: "sha512=4d3c9f25218d48dd68df3db19d2b84f0d9f95eb96a3206627095b76cbdfb4a36a7492067743882769f0afd4fc73b935ebf4fa4301af04ba3f75aaaeea898c2d8"
+}

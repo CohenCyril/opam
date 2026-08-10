@@ -5,17 +5,24 @@ license: "LGPL 2"
 build: [
   ["coq_makefile" "-f" "Make" "-o" "Makefile"]
   [make "-j%{jobs}%"]
-  [make "install"]
 ]
+install: [make "install"]
 remove: ["rm" "-R" "%{lib}%/coq/user-contrib/HigmanNW"]
 depends: [
   "ocaml"
   "coq" {= "dev"}
 ]
-tags: [ "keyword:a translation" "keyword:higman's lemma" "keyword:impredicativity" "keyword:system f" "keyword:extraction" "category:Mathematics/Combinatorics and Graph Theory" "category:Miscellaneous/Extracted Programs/Combinatorics" ]
+tags: [
+  "keyword:A-translation"
+  "keyword:Higman's lemma"
+  "keyword:impredicativity"
+  "keyword:System F"
+  "keyword:extraction"
+  "category:Mathematics/Combinatorics and Graph Theory"
+  "category:Miscellaneous/Extracted Programs/Combinatorics"
+]
 authors: [ "Hugo Herbelin <>" ]
-synopsis:
-  "A program from an A-translated impredicative proof of Higman's Lemma."
+synopsis: "A program from an A-translated impredicative proof of Higman's Lemma"
 description: """
 The file Higman.v formalizes an A-translated version of
 Nash-Williams impredicative and classical proof of Higman's lemma

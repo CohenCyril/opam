@@ -1,0 +1,39 @@
+opam-version: "2.0"
+maintainer: "Li-yao Xia <lysxia@gmail.com>"
+authors: [ "Li-yao Xia" "Yishuai Li" ]
+homepage: "https://github.com/Lysxia/rocq-simple-io"
+bug-reports: "https://github.com/Lysxia/rocq-simple-io/issues"
+license: "MIT"
+dev-repo: "git+https://github.com/Lysxia/rocq-simple-io.git"
+build: [
+  ["dune" "subst"] {dev}
+  [ "dune" "build" "-p" name "-j" jobs "@install" ]
+]
+depends: [
+  "dune" {>= "3.7" & < "3.22"}
+  "ocaml" {>= "4.08.0"}
+  "ocamlfind"
+  "coq" {>= "8.12~" & < "9.1~"}
+  "coq-ext-lib" {>= "0.10.0"}
+  "ocamlbuild" {with-test & >= "0.9.0"}
+  "cppo" {build & >= "1.6.8"}
+]
+tags: [
+  "date:2024-09-16"
+  "logpath:SimpleIO"
+  "keyword:extraction"
+  "keyword:effects"
+]
+synopsis: "IO monad for Coq"
+description: """
+This library provides tools to implement IO programs directly in Coq, in a
+similar style to Haskell. Facilities for formal verification are not included.
+
+IO is defined as a parameter with a purely functional interface in Coq,
+to be extracted to OCaml. Some wrappers for the basic types and functions in
+the OCaml Stdlib module are provided. Users are free to define their own
+APIs on top of this IO type."""
+url {
+  src: "https://github.com/Lysxia/coq-simple-io/archive/1.10.0.tar.gz"
+  checksum: "sha512=3038458f5680a894e5391be3f73ed7ba35a2f9d3edea05b378d94667ac142d3d1c63125b18deb1cb72a710ff2f46acc8e25e8b80bd96dd0a970c936d5d3a44ba"
+}

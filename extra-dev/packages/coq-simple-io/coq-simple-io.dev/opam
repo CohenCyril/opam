@@ -6,23 +6,24 @@ homepage: "https://github.com/Lysxia/coq-simple-io"
 bug-reports: "https://github.com/Lysxia/coq-simple-io/issues"
 license: "MIT"
 dev-repo: "git+https://github.com/Lysxia/coq-simple-io.git"
-build: [make "build"]
-install: [make "install"]
-run-test: [make "test"]
-remove: [make "uninstall"]
+build: [
+  ["dune" "subst"] {dev}
+  [ "dune" "build" "-p" name "-j" jobs "@install" ]
+]
 depends: [
   "ocaml"
-  "coq"
+  "coq" {>= "8.12~"}
   "coq-ext-lib" {>= "0.10.0"}
   "ocamlbuild" {with-test & >= "0.9.0"}
+  "cppo" {build & >= "1.6.8"}
   "ocamlfind"
+  "dune" {>= "3.12"}
 ]
 tags: [
-  "date:2018-07-28"
   "logpath:SimpleIO"
   "keyword:extraction"
   "keyword:effects"
 ]
 url {
-  src: "git+https://github.com/Lysxia/coq-simple-io#dev"
+  src: "git+https://github.com/Lysxia/coq-simple-io#master"
 }

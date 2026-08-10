@@ -18,15 +18,15 @@ build: [make "-C" "src" "all" "-j%{jobs}%"]
 install: [make "-C" "src" "-f" "Makefile.coq" "install"]
 remove: ["rm" "-r" "-f" "%{lib}%/coq/user-contrib/Paco"]
 depends: [
-  "coq" {>= "8.6" & < "8.10"}
+  "coq" {>= "8.6" & < "8.13~"}
 ]
 tags: [
   "date:2019-04-30"
 
-  "category:Programming Languages/Formal Definitions and Theory"
-  "category:Mathematical Logic and Foramal Languages/Mathematical Logic"
+  "category:Computer Science/Programming Languages/Formal Definitions and Theory"
+  "category:Mathematics/Logic"
 
-  "keyword:coinduction"
+  "keyword:co-induction"
   "keyword:simulation"
   "keyword:parameterized greatest fixed point"
 ]

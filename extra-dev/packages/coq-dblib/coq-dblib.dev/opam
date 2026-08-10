@@ -5,14 +5,22 @@ license: "GPL"
 build: [
   ["coq_makefile" "-f" "Make" "-o" "Makefile"]
   [make "-j%{jobs}%"]
-  [make "install"]
 ]
+install: [make "install"]
 remove: ["rm" "-R" "%{lib}%/coq/user-contrib/Dblib"]
 depends: [
   "ocaml"
   "coq" {= "dev"}
 ]
-tags: [ "keyword:abstract syntax" "keyword:binders" "keyword:de bruijn indices" "keyword:shift" "keyword:lift" "keyword:substitution" "category:Computer Science/Lambda Calculi" ]
+tags: [
+  "keyword:abstract syntax"
+  "keyword:binders"
+  "keyword:de Bruijn indices"
+  "keyword:shift"
+  "keyword:lift"
+  "keyword:substitution"
+  "category:Computer Science/Lambda Calculi"
+]
 authors: [ "Francois Pottier <francois.pottier@inria.fr>" ]
 synopsis: "dblib."
 description:

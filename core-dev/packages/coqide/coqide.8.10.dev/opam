@@ -10,6 +10,8 @@ synopsis: "IDE of the Coq formal proof management system"
 depends: [
   "coq" {= version}
   "lablgtk3-sourceview3"
+  "conf-findutils" {build}
+  "conf-adwaita-icon-theme"
 ]
 build: [
   [

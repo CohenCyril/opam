@@ -1,0 +1,12 @@
+opam-version: "2.0"
+maintainer: "Cyril Cohen <cyril.cohen@inria.fr>"
+
+homepage: "https://github.com/math-comp/bigenough"
+dev-repo: "git+https://github.com/math-comp/bigenough"
+bug-reports: "https://github.com/math-comp/bigenough/issues"
+license: "CeCILL-B"
+
+depends: [ "rocq-mathcomp-bigenough" { = version } ]
+authors: [ "Cyril Cohen" ]
+
+synopsis: "Compatibility package for rocq-mathcomp-bigenough"

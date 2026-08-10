@@ -1,0 +1,53 @@
+opam-version: "2.0"
+synopsis: "Verified Software Toolchain"
+description: "The software toolchain includes static analyzers to check assertions about your program; optimizing compilers to translate your program to machine language; operating systems and libraries to supply context for your program. The Verified Software Toolchain project assures with machine-checked proofs that the assertions claimed at the top of the toolchain really hold in the machine-language program, running in the operating-system context."
+authors: [
+  "Andrew W. Appel"
+  "Lennart Beringer"
+  "Sandrine Blazy"
+  "Qinxiang Cao"
+  "Santiago Cuellar"
+  "Robert Dockins"
+  "Josiah Dodds"
+  "Nick Giannarakis"
+  "Samuel Gruetter"
+  "Aquinas Hobor"
+  "Jean-Marie Madiot"
+  "William Mansky"
+]
+maintainer: "VST team"
+homepage: "http://vst.cs.princeton.edu/"
+dev-repo: "git+https://github.com/PrincetonUniversity/VST.git"
+bug-reports: "https://github.com/PrincetonUniversity/VST/issues"
+license: "https://raw.githubusercontent.com/PrincetonUniversity/VST/master/LICENSE"
+build: [
+  [make "-j%{jobs}%" "BITSIZE=64" "IGNORECOQVERSION=true"]
+]
+install: [
+  ["mkdir" "-p" "%{lib}%/coq/user-contrib/VST"]
+  ["cp" "-r" "msl" "%{lib}%/coq/user-contrib/VST/"]
+  ["cp" "-r" "veric" "%{lib}%/coq/user-contrib/VST/"]
+  ["cp" "-r" "floyd" "%{lib}%/coq/user-contrib/VST/"]
+  ["cp" "-r" "sepcomp" "%{lib}%/coq/user-contrib/VST/"]
+]
+depends: [
+  "ocaml"
+  "coq" {>= "8.12" & < "8.14"}
+  "coq-compcert" {(= "3.8") | (= "3.8~open-source")}
+  "coq-flocq" {>= "3.2.1"}
+]
+tags: [
+  "category:Computer Science/Semantics and Compilation/Semantics"
+  "keyword:C"
+  "logpath:VST"
+  "date:2020-12-20"
+]
+patches: ["makefile.patch"]
+url {
+  src: "https://github.com/PrincetonUniversity/VST/archive/v2.7.tar.gz"
+  checksum: "sha256=970be13e71bdb013e2b9de64aecf1dda08228dd8ef3a1f6e4bb23ccd3a0896d3"
+}
+extra-files: [
+  "makefile.patch"
+  "sha512=13e4e4f5d102458ff10b78909015dfe2db14a818160e12fe5590ef885c1e2eb13bf40ec96b2fd764f1d7ce2b18a837d15fa565f455a9151ebe53bd0cec99a0e0"
+]

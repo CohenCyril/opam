@@ -1,7 +1,7 @@
 opam-version: "2.0"
 maintainer: "frederic.blanqui@inria.fr"
-homepage: "http://color.inria.fr/"
-license: "CeCILL"
+homepage: "https://github.com/fblanqui/color/"
+license: "CECILL-2.1"
 build: [
   [make "-j%{jobs}%"]
 ]
@@ -33,12 +33,12 @@ tags: [
 
   "keyword:list"
   "keyword:multiset"
-  "keyword:polynom"
+  "keyword:polynomial"
   "keyword:vectors"
   "keyword:matrices"
   "keyword:FSet"
   "keyword:FMap"
-  
+
   "keyword:term"
   "keyword:context"
   "keyword:substitution"
@@ -48,9 +48,9 @@ tags: [
   "keyword:string"
 
   "keyword:alpha-equivalence"
-  "keyword:de bruijn indices"
+  "keyword:de Bruijn indices"
   "keyword:simple types"
-  
+
   "keyword:matching"
   "keyword:unification"
 
@@ -58,11 +58,11 @@ tags: [
   "keyword:ordering"
   "keyword:quasi-ordering"
   "keyword:lexicographic ordering"
-  
+
   "keyword:ring"
   "keyword:semiring"
 
-  "keyword:well-founded"
+  "keyword:well-foundedness"
   "keyword:noetherian"
   "keyword:finitely branching"
   "keyword:dependent choice"
@@ -70,13 +70,13 @@ tags: [
 
   "keyword:non-termination"
   "keyword:loop"
-  
+
   "keyword:graph"
   "keyword:path"
   "keyword:transitive closure"
-  "keyword:strongly connected component"
+  "keyword:strongly connected components"
   "keyword:topological ordering"
-  
+
   "keyword:rpo"
   "keyword:horpo"
   "keyword:dependency pair"
@@ -85,14 +85,14 @@ tags: [
 
   "keyword:reducibility"
   "keyword:Girard"
-  
+
   "keyword:fixpoint theorem"
   "keyword:Tarski"
 
   "keyword:pigeon-hole principle"
   "keyword:Ramsey theorem"
-  
-  "category:Computer Science/Algorithms/Correctness proofs of algorithms"
+
+  "category:Computer Science/Decision Procedures and Certified Algorithms/Correctness proofs of algorithms"
   "category:Computer Science/Data Types and Data Structures"
   "category:Computer Science/Lambda Calculi"
   "category:Mathematics/Algebra"
@@ -101,12 +101,11 @@ tags: [
   "category:Miscellaneous/Extracted Programs/Type checking unification and normalization"
 
   "date:2016-01-26"
-  
+
   "logpath:CoLoR"
 ]
 synopsis: "A library on rewriting theory and termination"
 url {
-  src:
-    "https://gforge.inria.fr/frs/download.php/file/35820/color.1.2.0.tar.gz"
+  src: "https://files.inria.fr/blanqui/color/color.1.2.0.tar.gz"
   checksum: "md5=3e1541cc57beec0790667ef49bee66ce"
 }

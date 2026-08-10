@@ -2,13 +2,19 @@ opam-version: "2.0"
 maintainer: "Hugo.Herbelin@inria.fr"
 homepage: "https://github.com/coq-contribs/rational"
 license: "LGPL 2.1"
-build: [make "-j%{jobs}%"]
+build: [make]
 install: [make "install"]
 depends: [
   "ocaml"
   "coq" {>= "8.6" & < "8.7~"}
 ]
-tags: [ "keyword: Integers" "keyword: rational numbers" "keyword: quotient types" "keyword: subset types" "category: Mathematics/Arithmetic and Number Theory/Rational numbers" ]
+tags: [
+  "keyword: integers"
+  "keyword: rational numbers"
+  "keyword: quotient types"
+  "keyword: subset types"
+  "category: Mathematics/Arithmetic and Number Theory/Rational numbers"
+]
 authors: [ "Samuel Boutin" ]
 bug-reports: "https://github.com/coq-contribs/rational/issues"
 dev-repo: "git+https://github.com/coq-contribs/rational.git"

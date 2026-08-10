@@ -1,0 +1,44 @@
+opam-version: "2.0"
+maintainer: "damien.pous@ens-lyon.fr"
+
+homepage: "https://github.com/damien-pous/coinduction-examples"
+dev-repo: "git+https://github.com/damien-pous/coinduction-examples.git"
+bug-reports: "https://github.com/damien-pous/coinduction-examples/issues"
+license: "LGPL-3.0-or-later"
+
+synopsis: "Examples on how to use the coq-coinduction library, for doing proofs by (enhanced) coinduction"
+description: """
+Coinductive predicates are greatest fixpoints of monotone functions.
+The `companion' makes it possible to enhance the associated coinduction scheme.
+The coq-coinduction library provides tools to exploit such techniques; the present library illustrates its usage on three examples: divergence, Milner's CCS, and Rutten's stream calculus.
+"""
+
+build: [
+  [make "-j%{jobs}%" ]
+]
+install: [make "install"]
+depends: [
+  "rocq-coinduction" {>= "1.22"} 
+  "rocq-aac-tactics" 
+  "rocq-relation-algebra" {>= "1.9.0"} 
+]
+
+tags: [
+  "keyword:coinduction"
+  "keyword:up to techniques"
+  "keyword:companion"
+  "keyword:bisimilarity"
+  "keyword:divergence"
+  "keyword:streams"
+  "keyword:CCS"
+  "logpath:CoinductionExamples"
+]
+authors: [
+  "Damien Pous"
+]
+
+url {
+  src:
+    "https://github.com/damien-pous/coinduction-examples/archive/refs/tags/v1.9.tar.gz"
+  checksum: "sha512=42926c5a1f319c851f99abce707388207852747716e8c8ad87b4f0b1cb2c1afc0350ad83a6fa1e60850d6087315827efee96fa62d76f3fef82cfabb67ad1b6e3"
+}

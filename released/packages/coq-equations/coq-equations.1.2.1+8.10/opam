@@ -1,0 +1,40 @@
+opam-version: "2.0"
+authors: [ "Matthieu Sozeau <matthieu.sozeau@inria.fr>" "Cyprien Mangin <cyprien.mangin@m4x.org>" ]
+dev-repo: "git+https://github.com/mattam82/Coq-Equations.git"
+maintainer: "matthieu.sozeau@inria.fr"
+homepage: "https://mattam82.github.io/Coq-Equations"
+bug-reports: "https://github.com/mattam82/Coq-Equations/issues"
+license: "LGPL-2.1-only"
+synopsis: "A function definition package for Coq"
+description: """
+Equations is a function definition plugin for Coq, that allows the
+definition of functions by dependent pattern-matching and well-founded,
+mutual or nested structural recursion and compiles them into core
+terms. It automatically derives the clauses equations, the graph of the
+function and its associated elimination principle.
+"""
+tags: [
+  "keyword:dependent pattern-matching"
+  "keyword:functional elimination"
+  "category:Miscellaneous/Coq Extensions"
+  "logpath:Equations"
+]
+build: [
+  ["./configure.sh" "HoTT" {coq-hott:installed}]
+  [make "-j%{jobs}%"]
+]
+install: [
+  [make "install"]
+]
+run-test: [
+  [make "test-suite"]
+]
+depends: [
+  "coq" {>= "8.10~" & < "8.11~"}
+]
+depopts: [ "coq-hott" {= "8.10.dev" } ]
+url {
+  src:
+    "https://github.com/mattam82/Coq-Equations/archive/v1.2.1-8.10-2.tar.gz"
+  checksum: "sha512=f95dc46d905a28e62846991fa9612476019f933ac7bee2117f1d1c17a2ea78c66f925d14dd11534c29526fe9cabc77efd7fea78b0a32c82af0c50360b4a123fb"
+}

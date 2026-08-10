@@ -8,12 +8,13 @@ bug-reports: "https://github.com/math-comp/bigenough/issues"
 license: "CeCILL-B"
 dev-repo: "git+https://github.com/math-comp/bigenough"
 
-build: [ make "-j" "%{jobs}%" ]
+build: [ make "-j" "%{jobs}%" "COQEXTRAFLAGS+=-native-compiler yes" {coq-native:installed & coq:version < "8.13~" } ]
 install: [ make "install" ]
 remove: [ "sh" "-c" "rm -rf '%{lib}%/coq/user-contrib/mathcomp/bigenough'" ]
 depends: [
   "ocaml"
-  "coq-mathcomp-ssreflect" {(>= "1.6" | = "dev")}
+  "coq" {>= "8.5" & < "8.15~"}
+  "coq-mathcomp-ssreflect" {>= "1.6"}
 ]
 tags: [ "keyword:bigenough" "keyword:asymptotic reasonning" "keyword:small scale reflection" "keyword:mathematical components" ]
 authors: [ "Cyril Cohen <cyril.cohen@inria.fr>" ]

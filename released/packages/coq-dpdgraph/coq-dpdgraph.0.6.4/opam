@@ -23,13 +23,12 @@ remove: [
 ]
 
 depends: [
-  "ocaml"
+  "ocaml" {< "4.08.0"}
   "coq" {>= "8.9" & < "8.10~"}
   "ocamlgraph"
 ]
 authors: [ "Anne Pacalet" "Yves Bertot"]
-synopsis: "Compute dependencies between Coq objects (definitions, theorems)"
-description: "and produce graphs"
+synopsis: "Compute dependencies between Coq objects (definitions, theorems) and produce graphs"
 flags: light-uninstall
 url {
   src:

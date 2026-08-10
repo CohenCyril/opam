@@ -5,16 +5,21 @@ license: "LGPL 2"
 build: [
   ["coq_makefile" "-f" "Make" "-o" "Makefile"]
   [make "-j%{jobs}%"]
-  [make "install"]
 ]
+install: [make "install"]
 remove: ["rm" "-R" "%{lib}%/coq/user-contrib/GraphBasics"]
 depends: [
   "ocaml"
   "coq" {= "dev"}
 ]
-tags: [ "keyword:graph theory" "keyword:curry howard's isomorphism" "keyword:inductive" "keyword:definitions" "category:Mathematics/Combinatorics and Graph Theory" "date:2001-04" ]
+tags: [
+  "keyword:graph theory"
+  "keyword:Curry-Howard's isomorphism"
+  "category:Mathematics/Combinatorics and Graph Theory"
+  "date:2001-04"
+]
 authors: [ "Jean Duprat <>" ]
-synopsis: "a Coq toolkit for graph theory."
+synopsis: "a Coq toolkit for graph theory"
 description: """
 This library offers inductive definitions of basics
 in graph theory. The goal is to offer the possibility to write proofs

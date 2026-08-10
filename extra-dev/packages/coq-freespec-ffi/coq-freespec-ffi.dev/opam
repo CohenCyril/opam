@@ -1,0 +1,44 @@
+opam-version: "2.0"
+maintainer: "Thomas Letan <lthms@soap.coffee>"
+
+homepage: "https://github.com/lthms/FreeSpec"
+dev-repo: "git+https://github.com/lthms/FreeSpec.git"
+bug-reports: "https://github.com/lthms/FreeSpec.git/issues"
+doc: "https://lthms.github.io/FreeSpec"
+license: "MPL-2.0"
+
+synopsis: "A framework for implementing and certifying impure computations in Coq"
+description: """
+FreeSpec is a framework for the Coq proof assistant which allows to
+implement and specify impure computations. It can be used with coqffi
+to write certified software.
+"""
+
+build: [
+  ["patch" "-p1" "-i" "patches/opam-builds.patch"]
+  ["dune" "build" "-p" name "-j" jobs]
+]
+
+depends: [
+  "ocaml" {>= "4.10"}
+  "dune" {>= "2.5"}
+  "coq" {>= "8.12"}
+  "coq-freespec-core" {= "dev"}
+  "coq-coqffi" {>= "1.0~"}
+  "coq-simple-io" {>= "1.0"}
+]
+
+tags: [
+  "keyword:foreign function interface"
+  "category:Miscellaneous/Coq Extensions"
+  "logpath:FreeSpec.Exec"
+]
+
+authors: [
+  "Thomas Letan"
+  "Yann Régis-Gianas"
+]
+
+url {
+  src: "git+https://github.com/lthms/FreeSpec.git#master"
+}

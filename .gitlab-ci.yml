@@ -1,33 +1,45 @@
+stages:
+  - lint
+  - build
+
 image: buildpack-deps:stable-scm
 
 variables:
-  NJOBS: "2"
+  OPAMJOBS: "2"
 
 cache:
   paths:
     - opam-cache
+  key: v2
 
 before_script:
   - export HOME=$(pwd)
-  - export EXTRA_OPAM="ocamlbuild" # some packages build extracted code this way
+  - echo CI_RUNNER_TAGS=${CI_RUNNER_TAGS}
+  - export OPAM_VARIANT=$(if echo $CI_RUNNER_TAGS | grep -q no-sandbox; then echo "plain"; else echo "sandbox"; fi)
+  - echo OPAM_VARIANT=${OPAM_VARIANT}
+  - export OPAM_VERSION=2.1.2
+  - export OPAM_ROOT_DIR=${HOME}/opam-root-${COMPILER}-${OPAM_VERSION}-${OPAM_VARIANT}
+  - export OPAM_ROOT_CACHE=${HOME}/opam-cache/cache-${COMPILER}-${OPAM_VERSION}-${OPAM_VARIANT}.tgz
   - apt-get update -qy
-  - apt-get install unzip libgtksourceview2.0-dev libgtksourceview-3.0-dev libncurses5-dev curl jq ruby bubblewrap -y
-  - test -e ${HOME}/opam-cache/cache-${COMPILER}.tgz || scripts/opam-coq-init
-  - curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh > install.sh
-  - echo | sh install.sh
+  - apt-get install libgtksourceview2.0-dev -y || true # gone with Debian bullseye
+  - apt-get install build-essential -y # missing with Debian bullseye
+  - apt-get install unzip libgtksourceview-3.0-dev libncurses5-dev curl jq ruby bubblewrap time libgmp-dev coinor-csdp libstring-shellquote-perl libipc-system-simple-perl automake autoconf libtool wdiff -y # wdiff is used in test-suite of hierarchy-builder
+  - apt-get install clang -y
+  - test -e $OPAM_ROOT_CACHE || scripts/opam-coq-init
+  - curl -L https://github.com/ocaml/opam/releases/download/${OPAM_VERSION}/opam-${OPAM_VERSION}-x86_64-linux >/usr/local/bin/opam
+  - chmod +x /usr/local/bin/opam
   - set -o pipefail
 
-.opam-lint:
-  script:
-    - scripts/opam-coq-list-pr-files | xargs scripts/opam-coq-lint
-
 .opam-build:
+  stage: build
+  tags:
+    - medium
   script: |
-    PR=${CI_BUILD_REF_NAME##pr-};
+    PR=${CI_COMMIT_REF_NAME##pr-};
     echo "Github PR number: $PR";
-    SKIP=$(set +o pipefail; curl https://api.github.com/repos/coq/opam-coq-archive/issues/$PR | jq -rc .body | grep ^ci-skip: | cat );
+    SKIP=$(set +o pipefail; curl -L https://api.github.com/repos/coq/opam/issues/$PR | jq -rc .body | grep ^ci-skip: | cat );
     echo "SKIP packages per user request: $SKIP";
-    scripts/opam-coq-list-pr-files | xargs scripts/opam-coq-install-remove ${HOME}/opam-cache/cache-${COMPILER}.tgz $SKIP --
+    scripts/opam-coq-list-pr-files | xargs scripts/opam-coq-install-remove $OPAM_ROOT_CACHE $SKIP --
   artifacts:
     name: "$CI_JOB_NAME"
     when: on_failure
@@ -35,68 +47,77 @@ before_script:
       - log/
     expire_in: 1 week
 
-    
-opam-lint:4.02.3:
-  extends: .opam-lint
+# Json
+json-data:
+  stage: build
+  tags:
+    - medium
   variables:
-    COMPILER: "4.02.3"
+    COMPILER: "4.14.2"
+  script: |
+    . scripts/opam-coq-setup-root
+    mkdir -p log; > log/log.json
+    setup_root $OPAM_ROOT_CACHE log/log.json
+    opam install -y dune.2.9.3 opam-core.2.1.0 opam-file-format.2.1.3 ppx_deriving_yojson.3.6.1
+    ocamlfind opt -package opam-file-format,opam-core,ppx_deriving_yojson,str -linkpkg scripts/archive2web.ml -o scripts/archive2web
+    scripts/archive2web released extra-dev > coq-packages.json
+  artifacts:
+    name: "$CI_JOB_NAME"
+    paths:
+      - coq-packages.json
+    expire_in: 1 week
 
-opam-lint:4.05.0:
-  extends: .opam-lint
+# Lint
+opam-lint:
+  stage: lint
+  tags:
+    - medium
   variables:
-    COMPILER: "4.05.0"
+    COMPILER: "4.14.2"
+  script:
+    - scripts/opam-coq-list-pr-files | xargs scripts/opam-coq-lint
 
-opam-lint:4.07.1:
-  extends: .opam-lint
-  variables:
-    COMPILER: "4.07.1"
-
-
-opam-build:4.02.3:
+# Build
+opam-build:4.09.0:
   extends: .opam-build
   variables:
-    COMPILER: "4.02.3"
+    COMPILER: "4.09.0"
   except:
     - web
 
-opam-build:4.05.0:
+opam-build:4.14.2:
   extends: .opam-build
   variables:
-    COMPILER: "4.05.0"
+    COMPILER: "4.14.2"
   except:
     - web
 
-opam-build:4.07.1:
+opam-build:5.3.0:
   extends: .opam-build
   variables:
-    COMPILER: "4.07.1"
+    COMPILER: "5.3.0"
   except:
     - web
 
-
-opam-build-no-timeout:4.02.3:
+# Build without timeout
+opam-build-no-timeout:4.14.2:
   extends: .opam-build
   variables:
-    COMPILER: "4.02.3"
+    COMPILER: "4.14.2"
   only:
     - web
   tags:
     - no-timeout
 
-opam-build-no-timeout:4.05.0:
-  extends: .opam-build
-  variables:
-    COMPILER: "4.05.0"
-  only:
-    - web
-  tags:
-    - no-timeout
-
-opam-build-no-timeout:4.07.1:
-  extends: .opam-build
-  variables:
-    COMPILER: "4.07.1"
-  only:
-    - web
-  tags:
-    - no-timeout
+# JSON data
+# json-data:
+#   image: nixos/nix:2.3.12
+#   cache: {}
+#   before_script: []
+#   script:
+#     - nix-shell --run "dune exec --profile=release -- archive2web released extra-dev > coq-packages.json"
+#   artifacts:
+#     name: "$CI_JOB_NAME"
+#     paths:
+#       - coq-packages.json
+#     expire_in: 1 year

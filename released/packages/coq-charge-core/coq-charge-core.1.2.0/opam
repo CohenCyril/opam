@@ -11,18 +11,14 @@ build: [
 install: [
   [make "-C" "ChargeCore" "install"]
 ]
-remove: [
-  ["rm" "-R" "%{lib}%/coq/user-contrib/ChargeCore"]
-]
 depends: [
   "ocaml"
-  "coq" {>= "8.6" & < "8.10~"}
+  "coq" {(>= "8.6" & < "8.7~") | (>= "8.7.2" & < "8.10~")}
   "coq-ext-lib" {>= "0.9.6"}
 ]
 synopsis:
   "A framework of typeclasses for shallow embeddings of intuitionistic"
 description: "logics. Also includes definitions for separation algebras."
-flags: light-uninstall
 url {
   src: "https://github.com/jesper-bengtson/ChargeCore/archive/v1.2.0.tar.gz"
   checksum: "md5=8aeff5cebd29965b53698740a3fa493b"

@@ -1,0 +1,25 @@
+opam-version: "2.0"
+maintainer: "Jason Gross <jgross@mit.edu>"
+homepage: "http://homotopytypetheory.org/"
+bug-reports: "https://github.com/HoTT/Coq-HoTT/issues"
+license: "BSD-2-Clause"
+build: [
+  ["bash" "-c" "./autogen.sh -skip-submodules || :"]
+  ["./configure" "COQBIN=%{bin}%" "--prefix=%{prefix}%"]
+  [make "-j%{jobs}%"]
+]
+install: [make "install"]
+depends: [
+  "conf-autoconf" {build}
+  "ocaml"
+  "ocamlfind" {build}
+  "coq" {>= "8.10" & < "8.11~"}
+]
+authors: ["The Coq-HoTT Development Team"]
+dev-repo: "git+https://github.com/HoTT/Coq-HoTT.git"
+synopsis: "The Homotopy Type Theory library"
+tags: [ "logpath:HoTT" ]
+url {
+  src: "https://github.com/HoTT/Coq-HoTT/archive/V8.10.tar.gz"
+  checksum: "sha512=7a5c369ab8a61aa2a0868b8d2dae68b1aacf6f16f75127b397373cbb6c678f47f7e17271fafdf4aedfa6e3934144db49fa183fb07a6f81c059a4367807409b76"
+}

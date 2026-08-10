@@ -1,10 +1,10 @@
+.DS_Store
+.history
 *~
 .*.swp
-templates/*html
-www/policy.html
-www/index.html
-www/files
-www/styles
 */archives/*
 */index.tar.gz
 */urls.txt
+/coq-packages.json
+/_build
+/scripts/.merlin

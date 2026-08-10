@@ -16,9 +16,9 @@ authors: [
   "Lianyi Zhang"
   "Sorin Stratulat"
 ]
-license: "CeCILL"
-homepage: "http://color.inria.fr/"
-bug-reports: "color@inria.fr"
+license: "CECILL-2.1"
+homepage: "https://github.com/fblanqui/color/"
+bug-reports: "github.com/fblanqui/color"
 build: [make "-j%{jobs}%"]
 install: [make "-f" "Makefile.coq" "install"]
 remove: ["rm" "-R" "%{lib}%/coq/user-contrib/CoLoR"]
@@ -29,10 +29,10 @@ depends: [
 ]
 tags: [
   "date:2018-05-04"
-  
+
   "logpath:CoLoR"
 
-  "category:Computer Science/Algorithms/Correctness proofs of algorithms"
+  "category:Computer Science/Decision Procedures and Certified Algorithms/Correctness proofs of algorithms"
   "category:Computer Science/Data Types and Data Structures"
   "category:Computer Science/Lambda Calculi"
   "category:Mathematics/Algebra"
@@ -46,12 +46,12 @@ tags: [
 
   "keyword:list"
   "keyword:multiset"
-  "keyword:polynom"
+  "keyword:polynomial"
   "keyword:vectors"
   "keyword:matrices"
   "keyword:FSet"
   "keyword:FMap"
-  
+
   "keyword:term"
   "keyword:context"
   "keyword:substitution"
@@ -61,9 +61,9 @@ tags: [
   "keyword:string"
 
   "keyword:alpha-equivalence"
-  "keyword:de bruijn indices"
+  "keyword:de Bruijn indices"
   "keyword:simple types"
-  
+
   "keyword:matching"
   "keyword:unification"
 
@@ -71,11 +71,11 @@ tags: [
   "keyword:ordering"
   "keyword:quasi-ordering"
   "keyword:lexicographic ordering"
-  
+
   "keyword:ring"
   "keyword:semiring"
 
-  "keyword:well-founded"
+  "keyword:well-foundedness"
   "keyword:noetherian"
   "keyword:finitely branching"
   "keyword:dependent choice"
@@ -83,13 +83,13 @@ tags: [
 
   "keyword:non-termination"
   "keyword:loop"
-  
+
   "keyword:graph"
   "keyword:path"
   "keyword:transitive closure"
-  "keyword:strongly connected component"
+  "keyword:strongly connected components"
   "keyword:topological ordering"
-  
+
   "keyword:rpo"
   "keyword:horpo"
   "keyword:dependency pair"
@@ -98,17 +98,16 @@ tags: [
 
   "keyword:reducibility"
   "keyword:Girard"
-  
+
   "keyword:fixpoint theorem"
   "keyword:Tarski"
 
   "keyword:pigeon-hole principle"
-  "keyword:Ramsey theorem"  
+  "keyword:Ramsey theorem"
 ]
 synopsis: "A library on rewriting theory and termination"
 flags: light-uninstall
 url {
-  src:
-    "https://gforge.inria.fr/frs/download.php/file/37522/color.1.5.0.tar.gz"
+  src: "https://files.inria.fr/blanqui/color/color.1.5.0.tar.gz"
   checksum: "md5=1853a6fbd4265c9be744b32e7685d05b"
 }
